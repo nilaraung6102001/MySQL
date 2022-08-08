@@ -1,0 +1,60 @@
+SELECT CONCAT(firstname,' ',lastname) AS fullname,
+    IF(mbphones.phone IS NOT NULL ,mbphones.phone,'no record')
+    IF(mbpoints.point IS NOT NULL ,mbpoints.point,'no record')
+    FROM members
+    LEFT JOIN mbphones
+    ON members.id = mbphones.member_id
+    LEFT JOIN mbpoints
+    ON members.id = mbphones.member_id;
+
+
+SELECT CONCAT(firstname,' ',lastname) AS fullname,
+    IF(mbphones.phone IS NOT NULL ,mbphones.phone,'no record')
+    FROM members
+    LEFT JOIN mbphones
+    ON members.id = mbphones.member_id
+    IF(mbpoints.point IS NOT NULL ,mbpoints.point,'no record')
+    LEFT JOIN mbpoints
+    ON members.id = mbphones.member_id;
+
+
+ SELECT CONCAT(firstname,' ',lastname) AS fullname,
+    CASE
+    WHEN mbphones.phone IS NOT NULL THEN mbphones.phone
+    WHEN mbpoints.point IS NOT NULL THEN mbpoints.point 
+    ELSE 'NO Record'
+    END AS Result
+    FROM members
+    LEFT JOIN mbphones
+    ON members.id = mbphones.member_id
+    LEFT JOIN mbpoints
+    ON members.id = mbpoints.member_id;
++-------------+-----------+
+| fullname    | Result    |
++-------------+-----------+
+| aung aung   | 09123456  |
+| aung aung   | 09123456  |
+| aung aung   | 09123457  |
+| aung aung   | 09123457  |
+| maung maung | 09123459  |
+| kyaw kyaw   | 09123458  |
+| zaw zaw     | 09123455  |
+| su su       | 09123457  |
+| aye aye     | NO Record |
+| yu yu       | NO Record |
+| thu thu     | NO Record |
+| tun tun     | NO Record |
+| yu ya       | NO Record |
++-------------+-----------+
+ 
+
+
+
+  SELECT CONCAT(firstname,' ',lastname) AS fullname,
+     IF(mbphones.phone IS NOT NULL ,mbphones.phone,'No Phone Record'),
+     IF(mbpoints.point IS NOT NULL ,mbpoints.point,'No Point')
+     FROM members
+     LEFT JOIN mbphones
+     ON members.id = mbphones.member_id
+     LEFT JOIN mbpoints
+     ON members.id = mbpoints.member_id;

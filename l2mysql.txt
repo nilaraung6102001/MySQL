@@ -1,0 +1,103 @@
+SERVER LOGIN
+
+CMD
+
+USNAME= ssh wdf6366@dltmyanmar.com
+
+USER NAME = ssh dlt@dltmyanmar.com
+password  = datalandtechnology
+________________________________________________________________________
+putty
+
+host name =dltmyanmar.com
+or 157.230.240.154
+
+login user name = wdf5101
+password = datalandtechnology
+_______________________________________________________________________________
+winsp
+host name =dltmyanmar.com
+or 157.230.240.154
+
+username = dlt
+password = datalandtechnology
+__________________________________________________________________________________
+DATABASE LOGIN
+
+
+(method 1)
+mysql -uWDF6366 -p (-u ka username)(-p ka password)
+password= datalandtechnology
+
+
+(method2)
+mysql -u WDF5101 -P
+
+logout=exit
+
+________________________________________________________________________
+=>VERSION CHECK
+(method 1=in sever)
+mysql -V
+
+(method 2=in mysql)
+mysql -V
+help;
+______________________________________________
+
+=>Arithmetic Operators(5types)
+
+Operators				Meaning								optrate on
+
++(add)					Addition							Numeric Value
+-(subtract)				subtraction							Numeric Value
+*(multiply)				muliplication						Numeric Value
+/(Divide)				Division							Numeric Value
+%(moldulus)				Returns remainder of a division		Numeric Value
+
+
+Addition Operator = Syntax
+
+SELECT 10+2; ==>result 12
+SELECT "10"+"2"; ==>result 12
+SELECT '10'+2; ==>result 12
+SELECT 10+2,20 + 30; ==>result 12,50
+SELECT '100' + '200','300' + '400';==>result 300,700
+
+
+Subtration Operator = Synax
+
+SELECT 10-2; ==>result 8
+SELECT 20-10,30-15; ==>result 10,15
+SELECT '1000'-'500','500'-'700'; ==>result 500,-200
+
+Multiplication Operator =Synax
+SELECT 10*2;==>result 20
+SELECT 20*2,15*2; ==>result 40,30
+SELECT '100'*'5','3'*5; ==>result 500,15
+
+Division Operator (/ OR DIV)= Synax
+
+SELECT 10/2; ==>result 5.0000
+SELECT 2/3, 3 / 5 ==>result 0.6667,0.6000
+SELECT 100/'25','2000'/2,12/2; ==>result 4,1000,6.0000
+
+SELECT 20/3;==>result 6.6667
+SELECT 20 DIV 3; ==>result 6
+
+
+SELECT 5 DIV 2,-40 DIV 3, -100 DIV -7; ==>result 2,-13,14
+SELECT 5DIV2(error)
+SELECT 5 DIV 2,-20/5; ==>result 2,-4.0000
+SELECT DIV(10,3);(error)
+
+Moudulus Operator(% OR MOD) = Syntax
+
+SELECT 10 % 3; ==>result 1
+SELECT 2%3 ,3 % 5; ==>result 2,3
+
+SELECT '2345' MOD 23; ==>result 22
+SELECT 70%5 , 10%3; ==>result 0,1
+
+
+SELECT 70 MOD 5, MOD(10,3); ==>result 0,1

@@ -1,0 +1,133 @@
+==>Join
+
+1.INNER JOIN (or we can call simple join)
+2.LEFT OUTER JOIN(or we can call LEFT join)
+3.RIGHT OUTER JOIN(or we can call RIGHT join)
+4.FULL OUTER JOIN(or we can call FULL join)
+
+__________________________________________________________
+
+CREATE TABLE customers(
+		id INT AUTO_INCREMENT PRIMARY KEY,
+		firstname VARCHAR(20),
+		lastname VARCHAR(20),
+		email VARCHAR(50)
+);
+
+DESC customers;
+
+CREATE TABLE IF NOT EXIST orders(
+		id INT AUTO_INCREMENT PRIMARY KEY,
+		orderdate DATE,
+		amount DECIMAL(10,2),
+		customer_id INT 
+);
+
+DESC orders;
+
+
+INSERT DATA
+
+
+INSERT INTO orders(orderdate,amount,customer_id)
+VALUE('2021/10/10',70.25,20);
+
+SELECT * FROM customers WHERE lastname ="aung ";
++----+-----------+----------+--------------------+
+| id | firstname | lastname | email              |
++----+-----------+----------+--------------------+
+|  1 | aung      | aung     | aungaung@gmail.com |
++----+-----------+----------+--------------------+
+
+SELECT * FROM customers WHERE id = 1;
++----+-----------+----------+--------------------+
+| id | firstname | lastname | email              |
++----+-----------+----------+--------------------+
+|  1 | aung      | aung     | aungaung@gmail.com |
++----+-----------+----------+--------------------+
+
+SELECT * FROM orders WHERE customer_id = 1;
++----+------------+--------+-------------+
+| id | orderdate  | amount | customer_id |
++----+------------+--------+-------------+
+|  1 | 2021-02-10 |  99.99 |           1 |
+|  2 | 2021-10-11 |  75.35 |           1 |
++----+------------+--------+-------------+
+
+
+SELECT * FROM orders WHERE customer_id = (
+	SELECT id FROM customers WHERE lastname ="aung"
+);
++----+------------+--------+-------------+
+| id | orderdate  | amount | customer_id |
++----+------------+--------+-------------+
+|  1 | 2021-02-10 |  99.99 |           1 |
+|  2 | 2021-10-11 |  75.35 |           1 |
++----+------------+--------+-------------+
+
+
+
+
+SELECT * FROM orders WHERE customer_id = 2;
++----+------------+--------+-------------+
+| id | orderdate  | amount | customer_id |
++----+------------+--------+-------------+
+|  4 | 2021-07-13 |  13.25 |           2 |
++----+------------+--------+-------------+
+
+SELECT * FROM orders WHERE customer_id = (
+	SELECT id FROM customers
+	WHERE lastname ="maung"
+);
++----+------------+--------+-------------+
+| id | orderdate  | amount | customer_id |
++----+------------+--------+-------------+
+|  4 | 2021-07-13 |  13.25 |           2 |
++----+------------+--------+-------------+
+
+
+INSERT INTO customers(firstname,lastname,email)
+VALUE('htoo','aung','htooaung@gmail.com');
+
+
+result ==>error(single return pal return pyan )
+SELECT * FROM orders WHERE customer_id = (
+		SELECT id FROM customrs
+		WHERE lastname = "aung"
+);
+
+
+result ==>empmty
+SELECT * FROM orders WHERE customer_id = 8;
+
+result ==>empty
+SELECT * FROM orders WHERE customer_id = (
+		SELECT id FROM customrs
+		WHERE email = "htooaung@gmail.com"
+);
+
+
+
+SELECT * FROM customers
+SELECT * FROM orders
+
+SELECT * FROM customers,order;
+SELECT * FROM orders,customers;
+
+
+
+____________________________________________
+
+
+
+
+=>cross join
+
+
+*Result = Mixing result show
+SELECT * FROM customers,orders; // check id no & customer_id
+
+SELECT * FROM orders,customers;// check id no & customer_id
+
+
+

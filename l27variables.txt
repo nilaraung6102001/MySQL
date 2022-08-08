@@ -1,0 +1,277 @@
+=>VARIABLE
+
+@@ - System Variable 
+note:@@ is use for system variables prefix/Globle value of the system variable.
+
+
+@ - User Defined Variable
+note:@ is use for user defined variable prefix
+
+
+what is VARIABLE
+*value assign
+*value can change or overwrite
+
+
+Use for VARIABLE
+counter in looping
+save value
+use in cindidtional logic
+____________________________________________
+
+SHOW VARIABLES;
+
+=>@ - USER DEFINED VARIABLES
+
+*Method 2 (Using SELECT)
+
+SELECT @myfirstvar := 'Hello myanmar';
+SELECT @myfirstvar;
+
+SELECT @myfirstvar := 'Save Myanmar';
+SELECT @myfirstvar;
+
+
+*Method 2 (Using SET)
+SET @mysecondvar = 'data land';
+SELECT @mysecondvar;
+
+
+SELECT @num1 :=10;
+SELECT @num2 :=20;
+SELECT @num1;
+SELECT @num2;
+SELECT @num1+@num2;
++-------------+
+| @num1+@num2 |
++-------------+
+|          30 |
++-------------+
+
+
+SELECT @num3 :='30';
+SELECT @num4 :='40';
+SELECT @num3;
+SELECT @num4;
+SELECT @num3+@num4;
+
++-------------+
+| @num3+@num4 |
++-------------+
+|          70 |
++-------------+
+
+
+
+SELECT @num1,@num2,@num3,@num4;
++-------+-------+-------+-------+
+| @num1 | @num2 | @num3 | @num4 |
++-------+-------+-------+-------+
+| 10    |    20 | 30    | 40    |
++-------+-------+-------+-------+
+
+SELECT @num1 AS numberone,@num2 AS numbertow,@num3,@num4;
+
++-----------+-----------+-------+-------+
+| numberone | numbertwo | @num3 | @num4 |
++-----------+-----------+-------+-------+
+| 10        |        20 | 30    | 40    |
++-----------+-----------+-------+-------+
+
+
+SELECT @num1 AS numberone,@num2 AS numbertow,@num3+@num4;
+
++-----------+-----------+-------------+
+| numberone | numbertwo | @num3+@num4 |
++-----------+-----------+-------------+
+| 10        |        20 |          70 |
++-----------+-----------+-------------+
+
+
+SELECT @num1 AS numberone,@num2 AS numbertow,@num5:=@num3+@num4;
+
++-----------+-----------+---------------------+
+| numberone | numbertwo | @num5 :=@num3+@num4 |
++-----------+-----------+---------------------+
+| 10        |        20 |                  70 |
++-----------+-----------+---------------------+
+
+
+SELECT @num1 AS numberone,@num2 AS numbertow,@num5:=@num3+@num4 AS number5;
+
++-----------+-----------+---------+
+| numberone | numbertow | number5 |
++-----------+-----------+---------+
+| 10        |        20 |      70 |
++-----------+-----------+---------+
+
+
+SELECT * FROM employees;
+
+SELECT name,age,salary,city FROM employees WHERE age>20;
+
++--------------+------+------------+
+| name         | age  | city       |
++--------------+------+------------+
+| aung aung    |   25 | mandalay   |
+| zaw zaw      |   35 | yangon     |
+| mya mya      |   23 | mandalay   |
+| hla hla      |   30 | yangon     |
+| nu nu        |   21 | bago       |
+| aye_chan     |   31 | bago       |
+| pwint pwint  |   28 | bago       |
+| thar zaw     |   33 | bago       |
+| aye aye aung |   33 | mawlamyine |
+| tar gyi      |   36 | bago       |
+| k yar        |   21 | chin       |
+| mm           |   23 | chin       |
+| m            |   24 | chin       |
++--------------+------+------------+
+13 rows in set (0.00 sec)
+
+
+
+SELECT @num2 :20;
+
+SELECT name,age,salary,city FROM employees
+WHERE age>@num2;
+
++--------------+------+------------+
+| name         | age  | city       |
++--------------+------+------------+
+| aung aung    |   25 | mandalay   |
+| zaw zaw      |   35 | yangon     |
+| mya mya      |   23 | mandalay   |
+| hla hla      |   30 | yangon     |
+| nu nu        |   21 | bago       |
+| aye_chan     |   31 | bago       |
+| pwint pwint  |   28 | bago       |
+| thar zaw     |   33 | bago       |
+| aye aye aung |   33 | mawlamyine |
+| tar gyi      |   36 | bago       |
+| k yar        |   21 | chin       |
+| mm           |   23 | chin       |
+| m            |   24 | chin       |
++--------------+------+------------+
+13 rows in set (0.00 sec)
+
+
+
+SET @90K=90000;
+
+SELECT name,age,salary,city FROM employees
+WHERE salary>@90k;
+
+
++-------------+------+--------+----------+
+| name        | age  | salary | city     |
++-------------+------+--------+----------+
+| aung aung   |   25 | 500000 | mandalay |
+| zaw zaw     |   35 | 300000 | yangon   |
+| tar gyi     |   20 | 150000 | yangon   |
+| mya mya     |   23 | 200000 | mandalay |
+| hla hla     |   30 | 700000 | yangon   |
+| nu nu       |   21 | 280000 | bago     |
+| aye_chan    |   31 | 900000 | bago     |
+| naung naung |   17 | 180000 | yangon   |
+| pwint pwint |   28 | 490000 | bago     |
+| thar zaw    |   33 | 290000 | bago     |
+| aye aung    |   20 | 200000 | mandalay |
+| aung aung   |   18 | 700000 | yangon   |
+| tar gyi     |   36 | 400000 | bago     |
+| m zaw naw   |   20 | 100000 | chin     |
+| k yar       |   21 | 200000 | chin     |
+| mm          |   23 | 400000 | chin     |
+| m           |   24 | 500000 | chin     |
++-------------+------+--------+----------+
+17 rows in set (0.00 sec)
+
+SELECT name,age,salary,city FROM employees
+WHERE salary>@90k;
+**empty set
+
+SELECT name,age,salary,city FROM employees
+WHERE salary=@90k;
+
++--------------+------+--------+------------+
+| name         | age  | salary | city       |
++--------------+------+--------+------------+
+| maung maung  |   20 |  90000 | mawlamyine |
+| aye aye aung |   33 |  90000 | mawlamyine |
++--------------+------+--------+------------+
+2 rows in set (0.00 sec)
+
+
+_______________________________________________
+
+=> WARNING
+
+*Show Warinings Count
+SHOW COUNT(*) WARNINGS;
+SELECT @@warning_count;
+SELECT @@session.warning_count;
+
+
+=>Show Warnings;
+SHOW WARNINGS;
+SHOW WARNINGS LIMIT 3;
+
+SHOW WARNINGS\G;
+
+note::\G is modifier(ego  (\G) Send command to mysql server,display result vertically.). mysql>help;
+SELECT * FROM tablename\G;
+SELECT * FROM tablename \G;
+
+\W; (Show warning after every statement )
+\w; (don't show warnings after every statement)
+
+EG:SELECT 1/0;(warning)
+
+______________________________________________________
+
+=>ERROR
+
+*show errors count
+
+SHOW COUNT(*)ERRORS;
+SELECT @@error_count;
+
+*show errors
+
+SHOW ERRORS;
+SHOW ERRORS\G;
+
+eg.DROP TABLE abc;
+	SELECT myfun();
+
+
+
+*Change Error Count Setting;
+SHOW VARIABLES LIKE 'max_error_count';
+SET max_error_count=1024;
+
+_________________________________________________________
+
+
+=>Important SELECT Queries
+
+=>Check User
+status;
+SELECT USER();
+SELECT USER() AS 'wdf';
+
+____________________________________________________
+
+==>Get Mysql Time Zome
+
+
+SHOW VARIABLES LIKE '%time_zome%';
+SELECT @@time_zome;
+SELECT @@global.time_zone,@@session.time_zone;
+
+***global time zone change yin timezone ,session timezone,global;all change thi
+
+==>change mysql timezone
+SET time_zone = "+07:00";
+SET GLOBAL time_zone ="+7:00";
+SET @@global.time_zone = "+6:30";

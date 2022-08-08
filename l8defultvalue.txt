@@ -1,0 +1,44 @@
+date-17/10/2021
+
+=>DEFAULT
+
+CREATE TABLE mobiles(
+	bran VARCHAR(100) DEFAULT 'unnamed',
+	made VARCHAR(30) DEFAULT 'china'
+);
+
+INSERT INTO mobiles(bran,made)
+VALUE ('samsung','korea');
+
+INSERT INTO mobioes (brand)
+VALUES ('mi');
+
+INSERT INTO mobioes (made)
+VALUES ('japan');
+
+INSERT INTO mobiles ()
+VALUE();
+
+___________________________________
+
+=>NOT NULL and DEFAULT
+
+CREATE TABLE vehicles(
+	brand varchar(100) NOT NULL DEFAULT 'unnamed',
+	made varchar(20) NOT NULL DEFAULT 'china'
+);
+
+
+error
+INSERT INTO vehicles (brand,made)
+VALUE('toyota',NULL);
+
+
+INSERT INTO vehicles(brand,made)
+VALUE (NLL,'indonesia');
+
+NSERT INTO vehicles(brand,made)
+VALUE (NULL,NULL);
+
+INSERT INTO vehicels(brand,made)
+VALUE('NULL','NULL')

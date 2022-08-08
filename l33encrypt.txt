@@ -1,0 +1,130 @@
+==>Encrypt
+2 TYPE
+
+==>SHA1();
+SHA1(string);
+
+SELECT SHA1('save myanmar');
+
+==>RESULT NULL
+SELECT SHA1(NULL);
+
+
+==>MD5();
+MD5(string);
+
+SELECT MD5('save myanmar');
+
+==>RESULT NULL
+SELECT MD5(NULL);
+
+
+___________________________________________________
+
+==>exercise
+
+CREATE TABLE account(
+   	 id INT NOT NULL AUTO_INCREMENT,
+     name VARCHAR(100),
+     email VARCHAR(50),
+     password VARCHAR(100),
+     PRIMARY KEY(id)
+     );
+
+ DESC accounts;
+
+
+ INSERT INTO accounts(name,email,password)
+ VALUES('aung aung','aungaung@gmail.com',1234),
+ ('maung maung','maungmaung@gmail.com','abcdefg'),
+ ('kyaw kyaw','kyaw kyaw@gmail.com','abcd123');
+
+
+ SELECT name,email,password,
+ IF(password = 1234,correct password,incorrect password)
+ FROM accounts;
+
+
+ SELECT name,email,password,
+     CASE
+     WHEN password =12345 THEN "CORRECNT PASSOWRD"
+     WHEN password ='abcdefg' THEN "correct passowrd"
+     WHEN password = 'abcd123' THEN 'correct password'
+     ELSE "INCORRECT PASSOWRD"
+     END FROM accounts;
+
+
+==>SHA1
+
+INSERT INTO accounts(name,email,password)
+ VALUES('aung aung','aungaung@gmail.com',SHA1('1234')),
+ ('maung maung','maungmaung@gmail.com',SHA1('abcdefg')),
+ ('kyaw kyaw','kyaw kyaw@gmail.com',SHA1('abcd123'));
+
+
+
+SELECT name,email,password,
+     CASE
+     WHEN password =SHA1('1234') THEN "correct password by 1234"
+     WHEN password =SHA1('abcdefg') THEN "correct passowrd by abcdefg"
+     WHEN password = SHA1('abcd123') THEN "correct password by abcd123"
+     ELSE "INCORRECT PASSOWRD"
+     END FROM accounts;
+
+
+
+==>MD5
+
+INSERT INTO accounts(name,email,password)
+ VALUES('aung aung','aungaung@gmail.com',MD5('1234'),
+ ('maung maung','maungmaung@gmail.com',MD5('abcdefg'),
+ ('kyaw kyaw','kyaw kyaw@gmail.com',MD5('abcd123');
+
+
+
+SELECT name,email,password,
+     CASE
+     WHEN password =MD5('1234') THEN "correct password by 1234"
+     WHEN password =MD5('abcdefg') THEN "correct passowrd by abcdefg"
+     WHEN password = MD5('abcd123') THEN "correct password by abcd123"
+     ELSE "INCORRECT PASSOWRD"
+     END FROM accounts;
+
+
+
+==>MD5-->SHA1
+
+ INSERT INTO accounts(name,email,password)
+     VALUES('aung aung','aungaung@gmail.com',MD5(SHA1('1234'))),
+     ('maung maung','maungmaung@gmail.com',MD5(SHA1('abcdefg'))),
+     ('kyaw kyaw','kyawkyaw@gmail.com',MD5(SHA1('abcd123')));
+
+
+
+ SELECT name,email,password,
+    CASE
+    WHEN password = MD5(SHA1('1234')) THEN 'CORRECT PASSWORD'
+    WHEN password =  MD5(SHA1('abcdefg')) THEN 'CORRECT PASSWORD'
+    WHEN password =  MD5(SHA1('abcd123')) THEN 'CORRECT PASSWORD'
+    ELSE 'incorrect password'
+    END FROM accounts;
+
+
+
+==>SHA1-->MD5
+
+INSERT INTO accounts(name,email,password)
+    VALUES('aung aung',"aungaung@gmail.com",SHA1(MD5('1234')))
+    ("maung maung","maungmaung@gmail.com",SHA1(MD5('acbdefg'))),
+    ("kyaw kyaw","kyawkyaw@gmail.com",SHA1(MD5("abcd123")));
+
+
+SELECT name,email,password,
+    CASE
+    WHEN password = SHA1(MD5('1234')) THEN 'CORRECT PASSWORD'
+    WHEN password = SHA1(MD5('abcdefg')) THEN 'CORRECT PASSWORD'
+    WHEN password = SHA1(MD5('abcd123')) THEN 'CORRECT PASSWORD'
+    ELSE 'incorrect password'
+    END FROM accounts;
+
+

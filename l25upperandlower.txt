@@ -1,0 +1,26 @@
+=>UPPER() and LOWER() (Change A String's Case)
+
+UPPER syntax 
+
+SELECT UPPER('Hello World');
+
+
+LOWER syntax
+
+SELECT LOWER('HELLO WORLD');
+
+__________________________________________________
+
+SELECT * FROM persons;
+
+SELECT UPPER(firstname) FROM persons;
+
+SELECT LOWER(firstname) FROM persons;
+
+
+=>UPPER() AND LOWER() with CONCAT()
+
+
+SELECT CONCAT(firstname,' is live in ',UPPER(City)) FROM persons;
+
+SELECT CONCAT(UPPER(firstname),' is live in 'LOWER(city)) FROM persons;

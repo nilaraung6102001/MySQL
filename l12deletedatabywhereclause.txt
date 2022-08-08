@@ -1,0 +1,29 @@
+=>DELECT RECORD
+
+Delete Syntax
+ DELETE FROM tablename WHERE condition;
+
+ eg Synatx
+ *Will be in single
+ DELETE FORM customers WHERE id='xxx'; id is unit
+
+ *will be multi records
+ DELECT FROM customers WHERE customername ='aung aung'; aung aung is not unit
+ __________________________________________
+
+ SELECT * FROM stus;
+
+ DELETE FROM stus WHERE name="aung aung";
+
+ DELETE FROM stus  WHERE name="su su";
+
+ INSERT INTO stus(name,age)
+ VALUE ('aung aung',18),
+ 		('su su',19),
+ 		('hla hla',20),
+ 		('nu nu',21);
+
+DELETE FROM stus WHERE age ='18';
+_____________________
+DELETE FROM stus(delete all record);
+_____________________

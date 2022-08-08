@@ -1,0 +1,44 @@
+=>REVERSE
+
+REVERSE Syntax
+
+SELECT RECERSE('hello world');
+
+_________________________________
+
+SELECT REVERSE('meow meow');
+
+SELECT REVERSE(firstname) FORM persons;
+
+=>REVERSE() With CONCAT()
+
+
+
+SELECT CONCAT('woof',' = ',REVERSE('woof'));
+result= foow
+
+SELECT CONCAT(firstname,' = ',REVERSE(firstname)) FROM persons;
+
+
+
+SELECT CHAR_LENGTH('data land technology');
+
+
+
+SELECT * FROM persons;
+
+SELECT firstname,CHAR_LENGTH(firstname) FROM persons;
+
+SELECT firstname,CHAR_LENGTH(firstname) AS length FROM persons;
+
+
+=>CHAR_LENGTH() with CONCAT()
+
+SELECT (CONCAT(firstname,' is ',CHAR_LENGTH,' Character long')) AS length FROM persons;
+
+SELECT (CONCAT(firstname,' is ',CHAR_LENGTH,' Character long')) AS 'character length' FROM persons;
+
+
+
+***SQL FORMAT***
+https://sql-format.com/

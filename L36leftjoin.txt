@@ -1,0 +1,120 @@
+==>LEFT JOIN
+
+==>Syntax
+
+SELECT columns
+FROM table1
+LEFT JOIN table2
+ON table1.column = table2.columb
+
+________________________________________________________________
+
+==>INNER JOIN
+
+SELECT * FROM customers
+INNER JOIn orders
+ON customers.id = order.customer_id;
++----+-----------+----------+----------------------+----+------------+--------+-------------+
+| id | firstname | lastname | email                | id | orderdate  | amount | customer_id |
++----+-----------+----------+----------------------+----+------------+--------+-------------+
+|  1 | aung      | aung     | aungaung@gmail.com   |  1 | 2021-02-10 |  99.99 |           1 |
+|  1 | aung      | aung     | aungaung@gmail.com   |  2 | 2021-10-11 |  75.35 |           1 |
+|  3 | kyaw      | kyaw     | kyawkyaw@gmail.com   |  3 | 2021-06-12 | 100.26 |           3 |
+|  2 | maung     | maung    | maungmaung@gmail.com |  4 | 2021-07-13 |  13.25 |           2 |
+|  3 | kyaw      | kyaw     | kyawkyaw@gmail.com   |  5 | 2021-01-14 |  45.00 |           3 |
++----+-----------+----------+----------------------+----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+
+==>LEFT JOIN
+
+SELECT * FROM customers
+LEFT JOIN ordrers
+ON customers.id = ordrers.customers_id;
++----+-----------+----------+----------------------+------+------------+--------+-------------+
+| id | firstname | lastname | email                | id   | orderdate  | amount | customer_id |
++----+-----------+----------+----------------------+------+------------+--------+-------------+
+|  1 | aung      | aung     | aungaung@gmail.com   |    2 | 2021-10-11 |  75.35 |           1 |
+|  1 | aung      | aung     | aungaung@gmail.com   |    1 | 2021-02-10 |  99.99 |           1 |
+|  2 | maung     | maung    | maungmaung@gmail.com |    4 | 2021-07-13 |  13.25 |           2 |
+|  3 | kyaw      | kyaw     | kyawkyaw@gmail.com   |    5 | 2021-01-14 |  45.00 |           3 |
+|  3 | kyaw      | kyaw     | kyawkyaw@gmail.com   |    3 | 2021-06-12 | 100.26 |           3 |
+|  4 | zaw       | zaw      | zawzaw@gmail.com     | NULL | NULL       |   NULL |        NULL |
+|  5 | su        | su       | susu@gmail.com       | NULL | NULL       |   NULL |        NULL |
+|  6 | aye       | aye      | ayeaye@gmail.com     | NULL | NULL       |   NULL |        NULL |
+|  7 | yu        | yu       | yuyu@gmail.com       | NULL | NULL       |   NULL |        NULL |
+|  8 | htoo      | aung     | htooaung@gmail.com   | NULL | NULL       |   NULL |        NULL |
++----+-----------+----------+----------------------+------+------------+--------+-------------+
+10 rows in set (0.00 sec)
+
+
+==>INNER JOIN
+SELECT * FROM orders
+INNER JOIN csutomers
+ON customers.id = order.customer_id;
++----+------------+--------+-------------+----+-----------+----------+----------------------+
+| id | orderdate  | amount | customer_id | id | firstname | lastname | email                |
++----+------------+--------+-------------+----+-----------+----------+----------------------+
+|  1 | 2021-02-10 |  99.99 |           1 |  1 | aung      | aung     | aungaung@gmail.com   |
+|  2 | 2021-10-11 |  75.35 |           1 |  1 | aung      | aung     | aungaung@gmail.com   |
+|  3 | 2021-06-12 | 100.26 |           3 |  3 | kyaw      | kyaw     | kyawkyaw@gmail.com   |
+|  4 | 2021-07-13 |  13.25 |           2 |  2 | maung     | maung    | maungmaung@gmail.com |
+|  5 | 2021-01-14 |  45.00 |           3 |  3 | kyaw      | kyaw     | kyawkyaw@gmail.com   |
++----+------------+--------+-------------+----+-----------+----------+----------------------+
+5 rows in set (0.00 sec)
+
+
+==>LEFT JOIN
+SELECT * FROM orders
+INNER LEFT csutomers
+ON customers.id = order.customer_id;
++----+------------+--------+-------------+------+-----------+----------+----------------------+
+| id | orderdate  | amount | customer_id | id   | firstname | lastname | email                |
++----+------------+--------+-------------+------+-----------+----------+----------------------+
+|  1 | 2021-02-10 |  99.99 |           1 |    1 | aung      | aung     | aungaung@gmail.com   |
+|  2 | 2021-10-11 |  75.35 |           1 |    1 | aung      | aung     | aungaung@gmail.com   |
+|  3 | 2021-06-12 | 100.26 |           3 |    3 | kyaw      | kyaw     | kyawkyaw@gmail.com   |
+|  4 | 2021-07-13 |  13.25 |           2 |    2 | maung     | maung    | maungmaung@gmail.com |
+|  5 | 2021-01-14 |  45.00 |           3 |    3 | kyaw      | kyaw     | kyawkyaw@gmail.com   |
+|  6 | 2021-10-10 |  70.25 |          20 | NULL | NULL      | NULL     | NULL                 |
++----+------------+--------+-------------+------+-----------+----------+----------------------+
+6 rows in set (0.00 sec)
+
+
+SELECT  fristname,lastname,orderdate,amount
+FROM customers
+LEFT JOIN orders
+ON customers.id = orders.customer_id
+GROUP BY customers.id;
+
+
+SELECT  fristname,lastname,orderdate,SUM(amount)
+FROM customers
+LEFT JOIN orders
+ON customers.id = orders.customer_id
+GROUP BY customers.id;
+
+SELECT  fristname,lastname,orderdate,SUM(amount),COUNT(*)
+FROM customers
+LEFT JOIN orders
+ON customers.id = orders.customer_id
+GROUP BY customers.id;
+
+
+SELECT  fristname,lastname,orderdate,SUM(amount) AS 'total_amount,COUNT(*) AS 'total_order'
+FROM customers
+LEFT JOIN orders
+ON customers.id = orders.customer_id
+GROUP BY customers.id;
+ORDER BY total_amount;
+
+SELECT  fristname,lastname,orderdate,SUM(amount) AS 'total_amount,COUNT(*) AS 'total_order'
+FROM customers
+LEFT JOIN orders
+ON customers.id = orders.customer_id
+GROUP BY customers.id;
+ORDER BY total_amount DESC;
+
+
+
+

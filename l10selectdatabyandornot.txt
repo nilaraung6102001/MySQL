@@ -1,0 +1,126 @@
+=>SELECT DATA BY (AND,OR,NOT)Operators
+
+AND OR operators are used to filter data,records based
+
+AND operator display a record TRUE
+OR operator display a record TRUE
+NOT operator display a record NOT TRUE
+
+WHERE clause can be combined with AND OR NOT operators
+
+=>AND Synatx
+Method 1 AND Syntax
+SELECT * FROM table name;
+WHERE country="myanmar" AND city="yangon"
+
+Method 2 AND Syntax
+SELECT column1,column2,...; 
+FROM tablename
+WHERE country="myanmar" AND city="yangon"
+
+
+=>OR Synatx
+Method 1 OR Syntax
+SELECT * FROM table name;
+WHERE city="yangon" OR city="mandalay";
+
+Method 2 OR Syntax
+SELECT column1,column2,...; 
+FROM tablename
+WHERE city="yangon" OR city="mandalay";
+
+
+NOT Synatx
+
+Method 1 NOT Syntax
+SELECT * FROM table name;
+WHERE NOT country="thiland"
+
+
+Method 2 NOT Syntax
+SELECT column1,column2,...; 
+FROM tablename
+WHERE NOT country="thiland"
+______________________________________
+
+exercise
+
+SELECT * FROM employees;
+
+SELECT name,age,city FROM employees;
+
+SELECT employeeid,name,salary
+FROM employees
+WHERE salary > 200000;
+
+SELECT employeeid,name,salary
+FROM employees
+WHERE salary < 200000;
+
+SELECT employeeid,name,salary
+FROM employees
+WHERE salary >= 200000;
+
+SELECT employeeid,name,salary
+FROM employees
+WHERE salary <= 200000;
+
+SELECT employeeid,name,salary
+FROM employees
+WHERE salary = 200000;
+
+SELECT employeeid,name,age,salary
+FROM employees
+WHERE salary > 300000;
+
+SELECT employeeid,name,salary
+FROM employees
+WHERE salary > 300000 AND age>30;
+
+SELECT employeeid,name,salary
+FROM employees
+WHERE salary > 300000 AND age>20 AND city='yangon;
+______________________________________
+
+OR EXE
+
+SELECT employeeid,name,salary
+FROM employees
+WHERE salary > 300000 AND age>20 AND city='yangon;
+
+SELECT employeeid,name,salary
+FROM employees
+WHERE salary > 300000 AND age>20 OR city='yangon;
+
+______________________________________
+
+NOT EXE
+
+SELECT employeeid,name,age,salary,city
+FROM employees
+WHERE NOT city ="mandalay";
+
+SELECT employeeid,name,age,salary,city
+FROM employees
+WHERE NOT age<25;
+
+SELECT employeeid,name,age,salary,city
+FROM employees
+WHERE NOT age<=25;
+
+SELECT employeeid,name,age,salary,city
+FROM employees
+WHERE age<25;
+
+SELECT employeeid,name,age,salary,city
+FROM employees
+WHERE NOT city="mandalay" AND NOT city='yangon'
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+=>ORDER BY (KEY WORD) Use for sorting our Results
+
+ORDER  BY Synatx
+
+Method1
+SELECT * FROM tablename
+ORDER BY columnname ASC/DESC
+
+
+_____________________________________
+=>EXERCISE
+
+SELECT * FROM studentstable;
+
+SELECT * FROM srudentstable ORDER BY firstname ASC;  Note::ASC is default 
+
+SELECT * FROM studentstable OREDR BY fistname DESC;
+
+SELECT * FROM studentstable ORDER BY firstname ASC;
+
+SELECT * FROM studentstable OREDR BY fistname,gender;
+
+=>Select Data by field Number
+
+SELECT name,age,salary FROM employees ORDER BY 2;
+
+SELECT name,age,salary FROM employees ORDER BY 2 DESC;
+

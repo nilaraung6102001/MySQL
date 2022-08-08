@@ -1,0 +1,41 @@
+=>SUBSTRING(mysql start is 1)method1
+
+syntax
+							start/end
+SELECT SUBSTRING('HELLO WORLD',1,4);
+
+=>SUBSTR(method2S)
+
+SUBSTR Synatx
+
+SELECT SUBSTR('hello world',1,4)
+
+_________________________________________
+							start to end
+SELECT SUBSTRING('HELLO WORLD',7);
+
+SELECT SUBSTRING('HELLO WORLD',-7);
+
+
+if you want to use Speciescape character you use '\'
+
+SELECT SUBSTRING(adderess,1,10)FROM persons;
+
+_________________________________________
+
+SUBSTR();
+
+SELECT * FROM persons;
+
+SELECT SUBSTR(address,1,10) FROM persons;
+_________________________________________
+
+=>SUBSTRING() with CONCAT()
+
+SELECT CONCAT(SUBSTRING(address,1,10),'....') FROM persons;
+
+SELECT CONCAT(
+SUBSTRING(address,1,10),'....'
+) AS 'short address' FROM persons;
+
+SELECT CONCAT(SUBSTR(address,1,10),'....') FROM persons;

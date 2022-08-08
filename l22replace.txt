@@ -1,0 +1,34 @@
+=>REPLACE (Replace part of srting for Result)
+
+REPLACE Syntax = REPLACE(value,old,new)
+
+SELECT REPLACE('Hello World','Hell','zer');
+
+____________________________________
+
+SELECT REPLACE('Tin Htut Aung','Aung','Maung');
+
+*no action
+SELECT REPLACE('Hello World','hell','zer');
+
+*no action
+SELECT REPLACE('Hello World','hello','zer');
+
+SELECT REPLACE ('Hello World','o','A');
+
+SELECT REPLACE('Hello World,'0','A');
+
+*Case sensitive
+SELECT REPLACE('HellO World,'O','*');
+
+SELECT REPLACE('Hello World,'l','7');
+
+SELECT REPLACE('coffee bread milk cheese',' ',' and ')
+
+_____________________________________
+REPLAE()with SUBSTRING()/SUBSTR()
+
+SELECT SUBSTRING(REPLACE(city,'m','M'),1,4) FROM persons;
+
+
+

@@ -1,0 +1,287 @@
+=>USEFUL FUNCTIONS
+*MYSQL Aggregate functions
+COUNT()
+AVG()
+SUM()
+MIN()
+MAX()
+
+
+COUNT() Syntax
+note:: Return the number of rows in group , including with NULL values;
+SELECT COUNT (columnname)
+FROM tablename
+Where condition;
+
+SUM () syntax
+note::return the summation of all non-NULL values a set.
+
+SELECT SUM(colummname)
+FROM tablename
+WHERE condition;
+
+MIN() Syntax
+note::return the lowest value in a set of non_null values.
+
+SELECT MIN(columnname)
+FROM tablename
+WHERE condition;
+
+MAX()syntax
+note::return the lowest value in a set of non_null values.
+
+SELECT MAX (columnname)
+FROM tablename
+WHERE condition
+
+AVG() syntax
+note::return the average of non_values
+
+SELECT AVG(columnname)
+FROM tablename
+WHERE condition;
+_________________________________
+EXERCISE = COUNT()
+
+SELECT COUNT (name) FROM employees;
+
+SELECT COUNT (city) FROM employees;
+
+SELECT COUNT (city) FROM employees WHERE city ='yangon';
+
+SELECT COUNT (employeeid) FROM employees WHERE salary > 500000;
+_________________________________
+
+EXERCISE = SUM()
+
+SELECT SUM(salary) FROM employees;
+
+SELECT SUM(salary)
+FROM employees
+WHERE city='yangon';
+
+SELECT SUM(salary)
+FROM employees
+WHERE city='mandalay';
+
+SELECT SUM(salary)
+FROM employees
+WHERE city='bago';
+_________________________________
+EXERCISE MIN()
+
+SELECT MIN(salary) FROM employees;
+
+SELECT MIN(age) FROM employees;
+
+SELECT MIN(salary) FROM employees WHERE age>30;
+
+SELECT COUNT (*),MIN(salary)
+FROM employees
+WHERE age > 30;
+_________________________________
+EXERCISE MAX()
+
+SELECT MAX(salary) FROM employees;
+
+SELECT MAX(age) FROM employees;
+
+SELECT MAX(salary)
+FROM employees
+WHERE age>30;
+
+SELECT COUNT(*),MAX(salary) FROM employees WHERE age>30;
+
+SELECT COUNT(*),MAX(age) FROM employees WHERE age>30;
+
+
+(error)
+SELECT MAX(salary),name FROM employees;
+
+SELECT name,salary,city FROM employees
+WHERE salary = 900000;
+
+SELECT name,salary,city FROM employees
+WHERE salary = (SELECT MAX(salary) FROM employees);
+
+SELECT * FROM employees
+WHERE salary = (SELECT MAX(salary) FROM employees);
+________________________________
+
+EXERCISE = AVG() total value/qty
+
+SELECT AVG(salary) FROM employees;
+
+SELECT SUM(salary) FROM employees
+WHERE age>30;
+
+
+__________________________________________-
+
+=>IF() function
+
+=>Syntax
+IF(condition,true,false);
+
+==>RESULT 'true'
+SELECT IF(100>20,'true','false');
+
+==>RESULT 'false'
+SELECT IF(100<20,'ture','false');
+
+
+
+SELECT name,age,salary,
+IF(age>=35,'elder','younger')
+FROM employees;
+
+
+__________________________________________________
+
+==>TRUNCATE() function
+=>Syntax
+SELECT TURNCATE(name,decimals);
+
+==>RESULT =123.342
+SELECT TURNCATE(123.342,3);
+SELECT TURNCATE(123.342,5);
+
+==>RESULT =123.34
+SELECT TURNCATE(123.342,2);
+==>RESULT =123.3
+SELECT TURNCATE(123.342,1);
+==>RESULT =123
+SELECT TURNCATE(123.342,0);
+
+
+
+SELECT * FROM itmes;
+
+==>result .1
+SELECT name,price,
+TURNCATE(price,1)
+FROM items;
+
+
+SELECT name,price,
+TURNCATE(price,0) AS 'integer'
+FROM items;
+
+____________________________________________
+
+==>FLOOR() Function
+
+SELECT FLOOR(number);
+
+==RESULT = 123
+SELECT FLOOR(123.342);
+SELECT FLOOR(123.678);
+SELECT FLOOR(123);
+
+SELECT name,price,
+FLOOR(price)
+FROM items;
+
+___________________________________________
+
+=>ROUND() Function
+
+SELECT ROUND(number,decimal);
+
+==>RESULT =123.342
+SELECT ROUND(123.342,3);
+SELECT ROUND(123.342,5);
+
+==>RESULT =123.34
+SELECT ROUND(123.342,2);
+==>RESULT =123.3
+SELECT ROUND(123.342,1);
+==>RESULT =123.4
+SELECT ROUND(123.356,1);
+==>RESULT =123
+SELECT ROUND(123.342,0);
+==>RESULT =124
+SELECT ROUND(123.678,0);
+
+SELECT * FROM items;
+
+SELECT name,price,
+ROUND(price,1)
+FROM items;
+
+
+SELECT name,price,
+ROUND(price,0) AS 'integer'
+FROM items;
+
+________________________________________________
+
+
+==>CEIL() / CEILING() function
+
+
+SELECT CEIL(number);
+SELECT CELING(number);
+
+
+==RESULT = 124
+SELECT CEIL(123.342);
+SELECT CEIL(123.678);
+SELECT CEIL(123);
+
+SELECT name,price,
+CEIL(price)
+FROM items;
+
+____________________________________________
+
+==>ABS() function
+SELECT ABS(number);
+
+==>RESULT = 123
+SELECT ABS(-123.342);
+
+______________________________________________
+
+==>SQRT() Function
+SELECT SQRT(number);
+
+==>RESULT 7
+SELECT SQRT(49);
+
+==>RESULT 9
+SELECT SQRT(81);
+
+_______________________________________________
+
+==>POW() function
+
+SELECT POW(base,power)
+
+==>RESULT 100
+SELECT POW(10,2);
+
+==>RESULT 64
+SELECT POW(4,3);
+
+==>RESULT 216
+SELECT POW(6,3);
+
+______________________________________________
+
+==>SIGN() Function
+SIGN(number)
+
+number > 0 return = 1
+number < 0 return =-1
+number = 0 return =0
+
+
+==>RESULT = 1
+SELECT SIGN(500);
+
+==>RESULT = -1
+SELECT SIGN(-1);
+
+==>RESULT = 0
+SELECT SIGN(0);

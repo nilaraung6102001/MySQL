@@ -1,0 +1,5 @@
+=>NULL datatype
+CREATE TABLE stus(
+	name varchar(10) NOT NULL,
+	age int(11) NOT NULL
+);

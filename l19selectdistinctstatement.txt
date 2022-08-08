@@ -1,0 +1,281 @@
+=>DOSTINCT STATMENT
+DISTINCT syntax
+
+SELECT DISTINCT column1,column2....
+FROM tablename;
+
+____________________________________
+
+EXERCISE
+
+SELECT DISTINCT city FROM employees;
+
+SELECT DISTINCT salary FROM employees;
+
+SELECT DISTINCT age FROM employees ORDER BY age ASC (or) DESC;
+
+SELECT COUNT(DISTINCT city) FROM employees;
+
+
+_______________________________________________
+
+
+==>GROUP BY Clause
+
+Note:: GROUP BY is same value into summary(eg.city,country,age ....)
+		used with aggregate function(COUNT(),MIN(),SUM(),AVG())
+		GROUP BY  is placed after the WHERE clause.
+
+
+		GROUP BY condition column name must have in expression
+
+Syntax
+
+SELECT col1,col2,aggregate function(col3),.......
+FROM tablename
+WHERE condition....
+GROUP BY col1,col2......con_n;
+
+______________________________________________
+
+
+==>GROUP BY vs DISTINCT
+
+--for DISTINCT--
+SELECT DISTINCT city FROM persons;
+
+
+--for GROUP BY--
+SELECT city FROM persons GROUP BY city;
+
+--for DISTINCT--
+SELECT DISTINCT address FROM persons;
+
+
+--for GROUP BY--
+SELECT address FROM persons GROUP BY address;
+__________
+
+
+==>GROUP BY with COUNT()
+
+SELECT  COUNT(*),city FROM persons GROUP BY city;
+SELECT  COUNT(*),address FROM persons GROUP BY address;
+SELECT  COUNT(*),firstname FROM persons GROUP BY firstname;
+SELECT  COUNT(*),lastname FROM persons GROUP BY lastname;
+
+
+SELECT  COUNT(*),city
+FROM persons
+GROUP BY city
+
+
+SELECT  COUNT(*),city
+FROM persons
+GROUP BY city
+ORDER BY city DESC/ASC;
+
+
+SELECT  address,city
+FROM persons
+GROUP BY address,city
+
+
+_____________________________________________
+
+==>GROUP BY clause with MIN()/MAX()/SUM()
+
+SELECT COUNT(*),salary FROM employees GROUP BY salary;
++----------+--------+
+| COUNT(*) | salary |
++----------+--------+
+|        4 | 500000 |
+|        1 | 300000 |
+|        1 | 150000 |
+|        3 | 200000 |
+|        1 | 700000 |
+|        1 | 280000 |
+|        1 | 900000 |
+|        1 | 180000 |
+|        2 |  90000 |
+|        1 | 490000 |
+|        1 | 290000 |
+|        2 | 100000 |
+|        1 | 400000 |
++----------+--------+
+13 rows in set (0.00 sec)
+
+
+SELECT SUM(salary),city FROM employees GROUP by city;
++-------------+------------+
+| SUM(salary) | city       |
++-------------+------------+
+|      800000 | mandalay   |
+|     2030000 | yangon     |
+|     1960000 | bago       |
+|      180000 | mawlamyine |
+|     1700000 | chin       |
++-------------+------------+
+5 rows in set (0.00 sec)
+
+SELECT city,MIN(salary),COUNT(*) FROM employees GROUP
++------------+-------------+----------+
+| city       | MIN(salary) | COUNT(*) |
++------------+-------------+----------+
+| mandalay   |      100000 |        3 |
+| yangon     |      150000 |        6 |
+| bago       |      280000 |        4 |
+| mawlamyine |       90000 |        2 |
+| chin       |      100000 |        5 |
++------------+-------------+----------+
+5 rows in set (0.00 sec)
+
+
+SELECT MAX(salary),city,COUNT(*)FROM employees GROUP BY city;
++-------------+------------+----------+
+| MAX(salary) | city       | COUNT(*) |
++-------------+------------+----------+
+|      500000 | mandalay   |        3 |
+|      700000 | yangon     |        6 |
+|      900000 | bago       |        4 |
+|       90000 | mawlamyine |        2 |
+|      500000 | chin       |        5 |
++-------------+------------+----------+
+5 rows in set (0.00 sec)
+
+
+
+__________________________
+
+==>GROUP BY with CONCAT()
+
+SELECT CONCAT('Employees in ',city) AS 'show location' ,MAX(salary)
+     FROM employees
+     GROUP BY city;
+
+
++-------------------------+-------------+
+| show location           | MAX(salary) |
++-------------------------+-------------+
+| Employees in mandalay   |      500000 |
+| Employees in yangon     |      700000 |
+| Employees in bago       |      900000 |
+| Employees in mawlamyine |       90000 |
+| Employees in chin       |      500000 |
++-------------------------+-------------+
+5 rows in set (0.00 sec)
+
+
+ _________________________________________
+
+ GROUP BY AVG()
+
+ SELECT city,AVG(salary)
+ FROM employees
+ GROUP BY city;
++------------+-------------+
+| city       | AVG(salary) |
++------------+-------------+
+| mandalay   | 266666.6667 |
+| yangon     | 338333.3333 |
+| bago       | 490000.0000 |
+| mawlamyine |  90000.0000 |
+| chin       | 340000.0000 |
++------------+-------------+
+5 rows in set (0.00 sec)
+
+
+
+ ________________________________________________________
+
+ ==>HAVING clause
+
+ =Syntax
+
+ SELECT col,col2,col3....
+ FROM tablename
+ WHERE condition...
+ GROUP BY col1,col2,col3........,col_n
+ HAVING condition;
+
+
+ ==>exercise
+
+ SELECT * FROM employees
+
+ SELECT COUNT(*),city FROM employees
+ GROUP BY city;
+
+ SELECT COUNT(*),city 
+ FROM employees
+ WHERE city LIKE 'ma%'
+ GROUP BY city;
+
+
+ SELECT SUM(*),city 
+ FROM employees
+ WHERE city LIKE 'ma%'
+ GROUP BY city;
+
+
+ SELECT COUNT(*),city 
+ FROM employees
+ GROUP BY city
+HAVING city LIKE 'ma%';
+
+
+SELECT city,SUM(salary) AS 'total salary'
+FROM employees
+GROUP city;
+
+
+SELECT city,SUM(salary) AS 'total salary'
+FROM employees
+GROUP city
+HAVING SUM(salary) > 2000000;
++--------+--------------+
+| city   | total salary |
++--------+--------------+
+| yangon |      2030000 |
++--------+--------------+
+1 row in set (0.00 sec)
+
+
+SELECT city,SUM(salary) AS 'total salary'
+FROM employees GROUP BY city HAVING SUM(salary)>200000;
++----------+--------------+
+| city     | total salary |
++----------+--------------+
+| mandalay |       800000 |
+| yangon   |      2030000 |
+| bago     |      1960000 |
+| chin     |      1700000 |
++----------+--------------+
+4 rows in set (0.01 sec)
+
+
+
+
+
+
+
+__________________________________________________
+note::
+  SELECT COUNT(*),address,city FROM persons GROUP BY address,city;
++----------------+-------------------+----------+
+| COUNT(address) | address           | city     |
++----------------+-------------------+----------+
+|              1 | no.9,mittar st    | mandalay |
+|              1 | no.108 unyo st    | yangon   |
+|              1 | no.10,st 60       | mandalay |
+|              1 | no.3 hninsi st    | yangon   |
+|              2 | no.29,myittar st  | mandalay |
+|              2 | no.39,myittar st  | mandalay |
+|              1 | no.19,myittar st, | mandalay |
+|              1 | no.49,myittar st  | mandalay |
+|              2 | no.59,myittar st  | mandalay |
+|              1 | no.19,myittar st  | mandalay |
+|              1 | no.79,myittar st  | mandalay |
++----------------+-------------------+----------+
+11 rows in set (0.00 sec)
+

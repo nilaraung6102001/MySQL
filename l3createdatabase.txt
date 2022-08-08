@@ -1,0 +1,25 @@
+=>CHECK DATABASE
+	SHOW DATABASES;
+
+=>CREATE DATABASE
+	CREATE DATABASE wdf5101;
+
+=>DELETE DATABASE
+	DROP DATABASE wdf5101;
+
+=>CHOOSE DATABASE
+ 	USE wdf5101;
+
+=>CHECK CURRENT DATABASE
+	SELECT database();
+__________________________
+=>DATABASE NAME
+CREATE DATABASE (name) 
+don't start with number 
+don't use special character
+but can use underscore
+no space
+________________________________
+
+database create (don't use s/es)
+table create (use s/es)

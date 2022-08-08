@@ -1,0 +1,331 @@
+==>	INNER JOIN /Single join
+
+DROP TABLE IF EXISTS orders;
+
+
+customer id is primary key in CUSTOMERS table.
+
+order id is primary key in ORDERS table.
+
+customers id is foreign key in ORDER table
+
+Different Between Primary Key AND Foreing Key
+
+ CREATE TABLE IF NOT EXISTS orders(
+    -> id INT AUTO_INCREMENT PRIMARY KEY,
+    -> amount DECIMAL(10,2),
+    -> orderdate DATE,
+    -> customer_id INT,
+    -> FOREING KEY(customer_id) REFERENCES customers(id));
+
+
+  DESC orders;
+
+
+ INSERT INTO orders(orderdate,amount,customer_id)
+ VALUES('2021/02/10',99.99,1),
+ ('2021/10/11',75.35,1),
+ ('2021/06/12',100.26,3),
+ ('2021/07/13',13.25,2),
+ ('2021/01,14',45,3);
+
+
+
+ *ERROR = cuz customer id 20 doen't have in customer table
+INSERT INTO orders(ordersdate,amount,customer_id)
+ VALUES('2021/10/10',70.25,20);
+
+
+INSERT INTO orders(ordersdate,amount,customer_id)
+ VALUES('2021/10/10',80.50,7);
+
+
+ INSERT INTO orders(ordersdate,amount,customer_id)
+ VALUES('2021/10/10',80,8),
+
+
+*ERROR = cuz customer id 9 doen't have in customer table
+INSERT INTO orders(ordersdate,amount,customer_id)
+ VALUES('2021/10/10',90,8),
+ ('2021/10/10',100,9);
+
+*not drop because customers table is FOREING KEY for orders table
+DROUP TABLE IF EXISTS customers;
+*error
+DELETE FROM customers WHERE id = 2;
+DELETE FROM customers WHERE id = 1;
+
+CAN DELETE = cuz cu id 4/5 are not yet recored in orders table
+DELETE FROM customers WHERE id = 4;
+DELETE FROM customers WHERE id = 5;
+
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS customers;
+________________________________________________________
+
+CREATE TABLE customers(
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      firstname VARCHAR(20),
+      lastname VARCHAR(20),
+      email VARCHAR(50)
+);
+
+DESC customers;
+
+
+INSERT INTO customers(firstname,lastname,email) 
+VALUES('aung','aung','aungaung@gmail.com'),
+('maung','maung','maungmaung@gmail.com'),
+('kyaw','kyaw','kyawkyaw@gmail.com'),
+('zaw','zaw','zawzaw@gmail.com'),
+('su','su','susu@gmail.com'),
+('aye','aye','ayeaye@gmail.com'),
+('yu','yu','yuyu@gmail.com');
+
+
+CREATE TABLE orders(
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      orderdate DATE,
+      amount DECIMAL(10,2),
+      customer_id INT 
+);
+
+
+INSERT INTO orders(orderdate,amount,customer_id)
+ VALUES('2021/02/10',99.99,1),
+ ('2021/10/11',75.35,1),
+ ('2021/06/12',100.26,3),
+ ('2021/07/13',13.25,2),
+ ('2021/01,14',45,3);
+
+
+INNER JOIN METNOD1
+
+SELECT * FROM customers,orders
+WHERE customers.id = orders.customer_id;
+
+SELECT * FROM customers,orders
+WHERE orders.customer_id = customers.id;
+
+
+
+
+
+
+Method 2(EXPLICIT INNER JOIN)
+
+SELECT * FROM customers
+JOIN orders
+ON customers.id = orders.customer_id;
+
+SELECT * FROM customers
+JOIN orders
+ON orders.customer_id = customer.id;
+
+SELECT * FROM orders
+JOIN customers
+ON orders.customer_id = customers.id;
+
+SELECT * FROM orders
+JOIN customers
+ON customer.id = orders.customers_id;
+
+
+Method3
+
+SELECT * FROM customers
+INNER JOIN orders
+ON customers.id = orders.customer_id;
+
+SELECT * FROM customers
+INNER JOIN orders
+ON orders.customer_id = customer.id;
+
+SELECT * FROM orders
+INNER JOIN customers
+ON orders.customer_id = customers.id;
+
+SELECT * FROM orders
+INNER JOIN customers
+ON customer.id = orders.customers_id;
+
+
+_____________________________________________________________
+metond1
+
+result error
+SELECT * FROM orders
+WHERE customers.id =orders.customer_id;
+
+SELECT firstname,lastname,orderdate,amount
+FROM customers,orders
+WHERE customers.id = order.customer_id;
+
+SELECT firstname,lastname,orderdate,amount
+FROM customers,orders
+WHERE order.customer_id = customers.id ;
+
+SELECT firstname,lastname,orderdate,amount
+FROM orders,customers
+WHERE order.customer_id = customers.id ;
+
+
+SELECT firstname,lastname,orderdate,amount
+FROM orders,customers
+WHERE customers.id = order.customer_id;
+
+
+
+method2
+
+SELECT firstname,lastname,orderdate,amount
+FROM customers
+JOIN orders
+ON orders.customer_id = customers.id;
+
+SELECT firstname,lastname,orderdate,amount
+FROM customers
+JOIN orders
+ON customers.id = orders.customer_id;
+
+SELECT firstname,lastname,orderdate,amount
+FROM orders
+JOIN customers
+ON orders.customer_id = customers.id;
+
+SELECT firstname,lastname,orderdate,amount
+FROM orders
+JOIN customers
+ON customers.id = orders.customer_id;
+
+metnod 3
+
+
+SELECT firstname,lastname,orderdate,amount
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+
+SELECT firstname,lastname,orderdate,amount
+FROM customers
+INNER JOIN orders
+ON customers.id = orders.customer_id;
+
+SELECT firstname,lastname,orderdate,amount
+FROM orders
+INNER JOIN customers
+ON orders.customer_id = customers.id;
+
+SELECT firstname,lastname,orderdate,amount
+FROM orders
+INNER JOIN customers
+ON customers.id = orders.customer_id;
+
+_________________________________________________________
+
+==>EX
+=>ORDER BY
+
+SELECT firstname,lastname,orderdate,amount
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+ORDER BY orderdate DESC;
+
+SELECT firstname,lastname,orderdate,amount
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+ORDER BY orderdate ASC;
+
+SELECT firstname,lastname,orderdate,amount
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+ORDER BY amount;
+
+SELECT firstname,lastname,orderdate,amount
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+ORDER BY amount DESC;
+
+
+SELECT firstname,lastname,orderdate,amount AS 'TotalAmount'
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+ORDER BY amount DESC;
+
+SELECT firstname,lastname,orderdate,amount AS 'TotalAmount'
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+ORDER BY TotalAmount DESC;
+
+SELECT firstname,lastname,orderdate,amount AS 'Total_Amount'
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+ORDER BY Total_Amount DESC;
+
+SELECT firstname,lastname,orderdate,amount AS 'Total Amount'
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+ORDER BY 'Total Amount' DESC;
+
+
+**ERROR
+
+SELECT firstname,lastname,orderdate,amount AS 'Total Amount'
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+ORDER BY Total Amount DESC;
+
+
+==>GROUP BY
+
+SELECT firstname,lastname,orderdate,amount AS 'Total Amount'
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id;
+
+SELECT firstname,lastname,orderdate,amount 
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id
+GROUP BY orders.customer_id;
+
+SELECT firstname,lastname,orderdate,SUM(amount)
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id
+GROUP BY orders.customer_id;
+
+SELECT firstname,lastname,orderdate,SUM(amount),COUNT(*)
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id
+GROUP BY orders.customer_id;
+
+
+SELECT firstname,lastname,orderdate,SUM(amount) AS 'totalaumount,COUNT(*) AS 'TotalOrder'
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id
+GROUP BY orderss.customer_id;
+ORDER BY  amount ASC;
+
+
+
+SELECT firstname,lastname,orderdate,SUM(amount) AS 'totalaumount,COUNT(*) AS 'TotalOrder'
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.id
+GROUP BY orders.customer_id;
+ORDER BY totalamount ASC;
+
+
+

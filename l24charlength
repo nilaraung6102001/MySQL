@@ -1,0 +1,8 @@
+=>CHAR LENGTH(counts character in string)
+styntax
+
+SELECT CAHDR_LENGTH('HELLO WORLD');
+
+CHAR_LENGTH() with CONCAT()
+
+SELECT CONCAT(firstname,' is ',CHAR_LENGTH(firstname),'charcter long') FROM persons;

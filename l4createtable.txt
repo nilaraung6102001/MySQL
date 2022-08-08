@@ -1,0 +1,554 @@
+=>CREATE TABLE
+
+*SERVER LOGIN
+*DATABASE SEVER LOGIN
+*CHOOSE DATABASE
+*CHECK DATABASE
+
+=>CHECK TABLE;
+SHOW TABLES
+
+=>CREATE TABLE = Syntax
+CREATE TABLE table_names(
+		column1 datatype,
+		column2 datatype,
+		column3 datatype,
+		..............		
+);
+
+CREATE TABLE persons(
+	personid int/INT,
+	firstname varchar(255)/VARCHAR(255),
+	//varchar 0 to 255
+	lastname varchar(255),
+	city varchar(255),
+	address varchar(255)
+);
+
+=>Table info(Describe)
+Method 1
+DESCRIBE persons;
+DESC persons;
+
+Method 2
+SHOW COLUMNS FROM persons;
+
+____________________________________
+
+==>option
+
+CREATE TABLE countries(
+	countryid int,
+	countryname varchar(255),
+	capitalname varchar(255),
+	currency varchar(255)
+);
+
+
+=>DELETE TABLE = Syntax
+DROP TABLE tablename;
+
+
+CREATE TABLE countries(
+	countryid int NOT NULL,
+	countryname varchar(255) NOT NULL,
+	capitalname varchar(255),
+	currency varchar(255)
+);
+
+_______________________________
+
+2-1-2022
+
+*Check table from current database to another database
+
+SHOW COLUMNS FROM another database . tablename;
+eg.SHOW COLUMNS FROM wdf2001.persons;
+
+SHOW COLUMNS FROM tablename IN anotherdatabase;
+eg.SHOW COLUMNS FROM feedbacks IN wdf2001;
+
+______________________________________________________
+3/1/2022
+
+==>DELETE TABLE 
+method 1=Single DROP
+DROP TABLE tablename;
+
+method 2=Multi DROP
+DROP TABLE tablename1,tablename2,tablename3.......;
+
+_____________________________________________________
+
+==>exercise 
+
+CREATE TABLE abc(
+	name VARCHAR(10)
+);
+
+
+CREATE TABLE IF NOT EXISTS abc(
+	name VARCHAR(10)
+);
+
+
+CREATE TABLE IF NOT EXISTS efg(
+	name VARCHAR(10)
+);
+
+**DROP TABLE IF EXISTS abc;**
+**DROP TABLE IF EXISTS abc,efg;**
+
+
+==>TURNCATE
+
+CREATE TABLE IF NOT EXISTS monitors(
+	brand VARCHAR(100),
+	price DECIMAL(8,2)
+);
+DESC monitors;
+
+
+INSERT INTO monitors(brand,price)
+VALUES('asus',400000),
+('acer',500000),
+('aco',600000),
+('dell',700000);
+
+SELECT * FROM monitors;
+
+
+
+==>Drop Table from current databadse to another database
+
+DROP TABLE IF EXISTS  wdf2002.countries;
+					(another database name) (table name)
+
+
+
+DROP TABLE IF EXISTS monitors;
+
+
+CREATE TABLE IF NOT EXISTS monitors(
+	id INT NOT NUL AUTO_INCREMENT,
+	brand VARCHAR(100),
+	price DECIMAL(8,2)
+);
+
+
+INSERT INTO monitors(brand,price)
+VALUES('asus',400000),
+('acer',500000),
+('aco',600000),
+('dell',700000);
+
+SELECT * FROM monitors;
+
+
+
+TURNCATE TABLE monitors;
+note::TURNCATE not use  /IF EXISTS;
+
+
+TURNCATE TABLE IF EXISTS monitors;[ERROR]
+
+__________________________________________________________
+
+==>RENAME TABLE
+
+=>Syntax
+
+ALTER TABLE oldtablename
+RENAME TO newtablename;
+
+
+
+CREATE TABLE IF NOT EXISTS stocks(
+	item VARCHAR(),
+	sctock INT
+);
+
+DESC stocks;
+
+INSERT INTO stocks(item,stock)
+VALUES('deskstop',20),
+('laptop',10),
+('projector',2);
+
+
+SELECT * FROM stocks;
+
+
+ALTER TABLE stocks 
+RENAME TO itaccessories;
+
+
+RENAME TABLE is not use IF EXISTS
+
+
+______________________________________
+19/2/2022
+
+==>Add New Column to table 
+=>Syntax :(Single)
+
+ALTER Table tablename
+ADD COLUMN columnname datatype;
+
+
+ALTER Table tablename
+ADD COLUMN columnname datatype FIRST;
+
+ALTER Table tablename
+ADD COLUMN columnname datatype AFTER existingcolumn;
+
+
+=>Syntax :(Multi)
+
+ALTER TABLE tablename
+ADD COLUMN columnname1 datatype FIRST/AFTER existingcolumn,
+ADD COLUMN columnname2 datatype FIRST/AFTER existingcolumn;
+
+
+==>Exercise(Single)
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories
+ADD COLUMN brand VARCHAR(50);
+
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories
+ADD COLUMN unitprice DECIMAL(10,2) NOT NULL FIRST;
+
+SELECT * FROM itaccessories;
+
+ALTER TABLE itaccessories
+ADD COLUMN madeby VARCHAR(50) NOT NULL AFTER items;
+DESC itaccessories;
+
+------------------------------
+
+EXERCISE (Multi)
+
+ALTER TABLE itaccessoreis
+ADD COLUMN status INT NOT NULL DEFAULT 1 AFTER brand,
+ADD COLUMN updatedby INT NOT NULL AFTER status;
+
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+INSERT INTO itaccessories(unitprice,items,madeby,stocks,brand,updateedby)
+VALUES(10,'keyboard','china',30,'a4tech',1),
+(20,'mounse','taiwan',50,'logitech',2);
+
+
+________________________________________________________________
+
+==>RENAME column in table
+
+=>Syntax
+
+ALTER TABLE tablename
+CHANGE COLUMN oldcolumnname newcolumnname datatype;
+
+
+ALTER TABLE itaccessories
+CHANGE COLUMN stocks totalqty INT;
+
+ALTER TABLE itaccessories
+CHANGE COLUMN brand manufactureby VARCHAR(100);
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+
+_________________________________________________________________
+
+==>MODIFY Column in the table (Change column datatype)
+
+=>Syntax :(Single)
+
+ALTER TABLE tablename
+MODIFY columnname datatype;
+
+=>Syntax : (Multli)
+
+ALTER TABLE tablename
+MODIFY columnname datatype,
+MODIFY columnname datatype;
+
+-------------
+
+=>exercise (Single)
+
+DESC itaccessories;
+
+ALTER TABLE itaccessories
+MODIFY manufactureby VARCHAR(50);
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+
+ALTER TABLE itaccessoreies
+MODIFY manugactureby VARCHAR(30) NOT NULL;
+
+
+ALTER TABLE itaccessories
+MODIFY items VARCHAR(50) NOT NULL;
+
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+____________________________
+
+
+==>Move Column
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+ALTER TABLE itaccessories
+MODIFY unitprice VARCHAR(50) NOT NUL
+AFTER madeby;
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+_______________________________________________________________
+
+==>DROP Columns int table 
+
+=Syntax : (Single)
+
+ALTER TABLE tablename
+DROP COLUMN columnname;
+
+=Syntax :(Multi)
+
+ALTER TABLE tablename
+DROP COLUMN columnname1,
+DROP COLUMN columnname2;
+
+=EXERCISE
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+ALTER TABLE itaccessories
+DROP COLUMN status;
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+
+ALTER TABLE itaccessories
+DROP COLUMN manufactureby,
+DROP COLUMN createdby;
+
+
+________________________________
+
+=>Add PRIMARY KEY
+
+=>METHOD 1
+
+ALTER TABLE itaccessories
+ADD COLUMN id INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+
+SHOW INDEX FROM itaccessories;
+
+
+ALTER TABLE itaccessories
+DROP COLUMN id;
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+
+=>METHOD 2
+
+ALTER TABLE itaccessories
+ADD COLUMN id INT NOT NULL AUTO_INCREMENT FIRST,
+ADD PRIMARY KEY(id);
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+SHOW INDEX FROM itaccessories;
+
+_____________________________
+
+DROP PRIMARY KEY
+
+SELECT * FROM itaccessories;
+DESC itaccessories;
+
+*error
+ALTER TABLE itaccessories DROP PRIMARY KEY;
+
+ALTER TABLE itaccessories MODIFY id INT NOT NLL;
+ALTER TABLE itaccessories DROP PRIMARY KEY;
+
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+_________________________________________________
+
+=>Add FOREIGN KEY
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+
+
+ALTER TABLE itaccessories
+ADD COLUMN customer_id INT NOT NULL;
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+
+
+*error= cuz of customer_id = 0 don't have in customers table
+ALTER TABLE itaccessories
+ADD FOREIGN KEY(customer_id) REFERENCES customers(id) ON UPDATE CUSCADE ON DELETE CUSCADE;
+
+UPDATE itaccesories SET customer_id = 2 WHERE customer_id = 0;
+
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+
+
+ALTER TABLE itaccessories
+ADD FOREIGN KEY(customer_id) REFERENCES customers(id) ON UPDATE CUSCADE ON DELETE CUSCADE;
+
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+
+_________________________________________________________________
+
+=>DROP FOREIGN KEY
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+
+*error
+ALTER TABLE itaccessories DROP FOREIGN KEY customer_id;
+
+
+SHOW CREATE TABLE itaccessories;
+ALTER TABLE itaccessories DROP FOREIGN KEY itaccessories_ibfk_1;
+ALTER TABLE itaccessories DROP KEY customer_id;
+
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+
+____________________________________________
+
+=>Add UNIQUE KEY
+
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+
+
+=>Method 1
+ALTER TABLE itaccessories ADD UNIQUE(items);
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+
+
+ALTER TABLE itaccessories ADD UNIQUE(totalqyty);
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+
+*error
+ALTER TABLE itaccessories ADD UNIQUE(madeby);
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+
+
+=>Method 2
+ALTER TABLE itaccessories
+ADD CONSTARINT uc_item_totalqty UNIQUE(items,totalqty);
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+
+
+
+_________________________________________________
+
+=>DROP UNIQUE KEY
+
+ALTER TABLE itaccessories DROP INDEX items;
+ALTER TABLE itaccessories DROP INDEX totalqty;
+
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+
+ALTER TABLE itaccessories DROP INDEX uc_item_totalqty;
+
+
+SELECT * FROM itaccessoreis;
+DESC itaccessories;
+SHOW INDEX FROM itaccessories;
+
+______________________________________________________
+
+
+==>CREATE TABLE AS Statement(Clone | copy)
+
+=>Syntax
+CREATE TABLE IF NOT EXISTS newtablename AS
+SELECT * FORM existingtablename;
+
+DESC workers;
+SELECT * FROM workers;
+
+INSERT INTO workeres(name,age,salary,status)
+VALUES('mya mya',25,400000,2),
+('yu yu',35,500000,2);
+
+SELECT * FROM workers;
+
+CREATE TABLE IF NOT EXISTS storekeepers AS 
+SELECT * FROM storekeepers;
+
+DESC storekeepers;
+SELECT * FROM storekeepers;
+
+
+DROP TABLE IF EXISTS storekeepers;
+
+CREATE TABLE IF NOT EXISTS storekeepers AS
+SELECT id,name,status FROM workers
+WHERE status = 1;
+
+DESC storekeepers;
+SELECT * FROM storekeepers;
+
+_______________________________________________________

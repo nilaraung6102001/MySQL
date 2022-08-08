@@ -1,0 +1,33 @@
+==>Aliases(Easier to read results)
+
+Aliases Syntax
+
+SELECT columnname AS aliesname
+FROM tablename;
+
+___________________________
+
+Exercise
+
+SELECT * FROM employees;
+
+
+SELECT name FORM AS fullname
+FROM employees;
+
+SELECT employeeid AS id 
+FROM employees;
+
+SELECT employeeid AS id,name,age,salary,city FROM employees;
+
+SELECT employeeid AS id,name  
+FROM employees;
+
+SELECT employeeid AS id,name AS fullname FROM employees;
+
+SELECT employeeid AD id,name AS 'full name',age,salary AS 'Pay Amount' FROM employees;
+
+SEELECT employeeid AS id,
+	name AS fullname,
+	salary AS payamount
+FROM employees;
